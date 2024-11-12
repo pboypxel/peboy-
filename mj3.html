@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Miftahul Jannah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            width: 150px;
+            transition: transform 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        header nav {
+            margin-top: 20px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #1abc9c;
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            background: url('mj2.jpg') center center no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        #hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+
+        #hero .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 20px;
+            max-width: 80%;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        #hero h2 {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            animation: shadowPulse 1.5s infinite alternate;
+        }
+
+        #hero p {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        /* About Section */
+        #about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #ecf0f1;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #about h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #about p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        /* New Section (Card Layout) */
+        #activities {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .card {
+            width: 280px;
+            margin: 15px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card .content {
+            padding: 15px;
+        }
+
+        .card .content h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .card .content p {
+            font-size: 1em;
+            color: #7f8c8d;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+
+        footer a {
+            color: #1abc9c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal (Popup) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shadowPulse {
+            0% {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            }
+            100% {
+                text-shadow: 3px 3px 15px rgba(0, 0, 0, 1);
+            }
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            #hero h2 {
+                font-size: 2.5em;
+            }
+
+            #hero p {
+                font-size: 1.4em;
+            }
+
+            .btn-primary {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+
+            #about h2 {
+                font-size: 2.2em;
+            }
+
+            #about p {
+                font-size: 1.1em;
+            }
+
+            .card {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="mj.png" alt="MT Miftahul Jannah Logo">
+        <h1>MT Miftahul Jannah</h1>
+        <nav>
+            <a href="#activities">Kegiatan</a>
+            <a href="kontakmj.html">Kontak</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <video autoplay muted loop>
+            <source src="mj.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content">
+            <h2>الشباب اليوم هم قادة المستقبل</h2>
+            <p>MT Miftahul Jannah</p>
+            <a href="#about" class="btn-primary">Support Kami</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>Tentang Kami</h2>
+        <p>Majlis Taklim Miftahul Jannah adalah tempat berkumpulnya pemuda-pemudi yang bersemangat untuk meningkatkan ilmu agama dan berdakwah dengan penuh semangat.</p>
+    </section>
+
+    <!-- New Section: Activities -->
+    <section id="activities">
+        <div class="card">
+            <img src="activity1.jpg" alt="Aktivitas 1">
+            <div class="content">
+                <h3>Pengajian Rutin</h3>
+                <p>Setiap minggu kami mengadakan pengajian rutin untuk meningkatkan pemahaman agama.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="activity2.jpg" alt="Aktivitas 2">
+            <div class="content">
+                <h3>Workshop Dakwah</h3>
+                <p>Berbagai workshop mengenai cara berdakwah yang efektif diadakan secara berkala.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="activity3.jpg" alt="Aktivitas 3">
+            <div class="content">
+                <h3>Pelatihan Kepemimpinan</h3>
+                <p>Pelatihan untuk mempersiapkan generasi muda sebagai pemimpin masa depan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 MT Miftahul Jannah | 
+           <a href="https://www.instagram.com/hadrohmj/" target="_blank">Instagram</a>
+        </p>
+    </footer>
+
+    <!-- Modal (Popup) -->
+    <div class="modal" id="popupModal">
+        <div class="modal-content">
+            <h2>Terima kasih telah bergabung!</h2>
+            <button onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <script>
+        // Script untuk membuka dan menutup modal
+        function openModal() {
+            document.getElementById("popupModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("popupModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
